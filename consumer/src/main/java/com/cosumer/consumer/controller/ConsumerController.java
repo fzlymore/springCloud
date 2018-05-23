@@ -1,5 +1,6 @@
 package com.cosumer.consumer.controller;
 
+import com.cosumer.consumer.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,12 @@ public class ConsumerController {
    @Autowired
     RestTemplate restTemplate;
 
+   @Autowired
+   HelloService helloService;
+
    @RequestMapping("/ribbon-consumer")
    public String helloConsumer(){
-      return restTemplate.getForEntity("http://HELLO-SERVICE/hello/hello",String.class).getBody();
+       return helloService.helloService();
    }
 
    /**
